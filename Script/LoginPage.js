@@ -6,7 +6,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       const code = form.code.value;
 
       const endpoint = 'https://prelim-exam.onrender.com/login'; 
-      const payload = { username, password, code};
+      const payload = { 
+        username: username,
+        password: password,
+        authKey: code};
 
       try {
         const response = await fetch(endpoint, {
@@ -18,16 +21,13 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         if (!response.ok) {
           throw new Error(`Server responded with status ${response.status}`);
         }
-
         const data = await response.json();
         const resultEl = document.getElementById('result');
-
         resultEl.innerHTML = `
-          <strong>Message:</strong> ${data.message ?? 'No message'}<br>
-          <strong>Token:</strong> ${data.token ?? 'No token'}
+          Login is a success!
         `;
-
         console.log('Login response:', data);
+
       } catch (error) {
         console.error('Error during login:', error);
         document.getElementById('result').textContent = `Error: ${error.message}`;
