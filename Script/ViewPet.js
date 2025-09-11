@@ -3,7 +3,7 @@ document.getElementById('accountForm').addEventListener('submit', async function
   const form = event.target;
   const userId = form.userId.value.trim();
 
-  const endpoint = `https://prelim-exam.onrender.com/users/${userId}`;
+  const endpoint = `https://prelim-exam.onrender.com/users/${userId}/pets`;
 
   try {
     const response = await fetch(endpoint, {
@@ -17,25 +17,22 @@ document.getElementById('accountForm').addEventListener('submit', async function
 
     const data = await response.json();
     const resultEl = document.getElementById('result');
-    resultEl.innerHTML = `
-        <h3>Account Details</h3>
-        <p><strong>ID:</strong> ${data.user._id}</p>
-        <p><strong>Username:</strong> ${data.user.username}</p>
-        <p><strong>Age:</strong> ${data.user.age}</p>
-        <p><strong>Code:</strong> ${data.user.code}</p>
-        <p><strong>Role:</strong> ${data.user.role}</p>
+    let html = `<h3>Your Pets</h3>`;
+    for (let pet of data.pets) {
+      html += `
+        <p><strong>Pet Name:</strong> ${pet.name}</p>
+        <p><strong>Pet ID:</strong> ${pet._id}</p>
+        <p><strong>Owner ID:</strong> ${pet.owner}</p>
+        <p><strong>Pet Type:</strong> ${pet.type}</p>
         <br>
-        <p>Want to edit your username?</p>
-        <a href="ChangeUsername.html">Here</a>
-        <br>
-        <p>Want to change your role?</p>
-        <a href="EditRole.html">Here</a>
-        <br>
-        <p>Have a pet?</p>
-        <a href="AddPet.html">Here</a>
-
+      `;
+    }
+    html += `
+    <p>Want to see all of the pets in the database?</p>
+    <a href="ViewPets.html">Here</a>
     `;
 
+    resultEl.innerHTML = html;
     console.log("Response:", data);
   } catch (error) {
     console.error('Error:', error);

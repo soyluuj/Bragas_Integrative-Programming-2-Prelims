@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Pet Page</title>
+</head>
+<body>
+  <h1>Add your pet into the database.</h1>
+  <form id="addPetForm">
+    <label>
+      Enter your User ID:
+      <input type="text" name="ownerId" required>
+    </label>
+    <br><br>
+    <label>
+      Enter your pet's name:
+      <input type="text" name="name" required>
+    </label>
+    <br><br>
+    <label>
+      Enter your pet's animal type:
+      <input type="text" name="type" required>
+    </label>
+    <br><br>
+    <button type="submit">Add</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script src = "../Script/AddPet.js"> </script>
+</body>
+</html>
