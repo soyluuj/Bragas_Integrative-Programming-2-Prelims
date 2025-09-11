@@ -29,7 +29,7 @@ document.getElementById('accountForm').addEventListener('submit', async function
         <a href="ChangeUsername.html">Here</a>
         <br>
         <p>Want to change your role?</p>
-        <a href="ChangeUsername.html">Here</a>
+        <a href="EditRole.html">Here</a>
 
     `;
 
